@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import WelcomeScreen from './components/WelcomeScreen';
+import Mainscreen from './components/Mainscreen';
 
 
 const Container = styled.div`
@@ -14,11 +14,12 @@ const Container = styled.div`
 
 
 
+
 const App = () => {
   return(
     <Container>
       <Header />
-      <WelcomeScreen />
+      <Mainscreen />
       <Footer />
     </Container>
   );

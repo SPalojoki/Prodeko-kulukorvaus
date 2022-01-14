@@ -10,7 +10,7 @@ export const AppRoot = createGlobalStyle`
     align-items: center;
     padding: 0;
     margin: 0;
-    background-color: #f7f7f7;
+    background-color: #F5EDE0;
     padding: 0px;
   }
 `;

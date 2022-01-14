@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import GlowButton from './GlowButton';
 
 //Styles
 const Container = styled.div`
@@ -26,7 +25,6 @@ const Header = () => {
   return(
     <Container>
       <div>Prodeko kulukorvaus</div>
-      <GlowButton active={true}>Prodeko.orgiin</GlowButton>
     </Container>
   );
 };

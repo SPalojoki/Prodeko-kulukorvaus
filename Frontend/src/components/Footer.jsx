@@ -4,7 +4,7 @@ import styled from 'styled-components';
 //Styles
 const Container = styled.div`
   width: 100%;
-  background-color: #202124;
+  background-color: black;
   color: white;
   padding: 10px;
   box-sizing: border-box; 
@@ -18,15 +18,13 @@ const Container = styled.div`
   background-repeat:no-repeat;
 `;
 
-
-
 const Footer = () => {
 
 
   //Component(s)
   return (
     <Container>
-      Prodeko kulumasiina, 2022
+      Prodeko kulukorvaus - 2022
     </Container>
   );
 };

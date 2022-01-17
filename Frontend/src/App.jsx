@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from './components/Header';
 import Footer from './components/Footer';
-import Mainscreen from './components/Mainscreen';
+import ServicesHeader from './components/ServicesHeader';
+import Kulukorvaus from './components/Kulukorvaus';
 
 
 const Container = styled.div`
@@ -18,8 +18,8 @@ const Container = styled.div`
 const App = () => {
   return(
     <Container>
-      <Header />
-      <Mainscreen />
+      <ServicesHeader />
+      <Kulukorvaus />
       <Footer />
     </Container>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Header = styled.div`
   height: min-content;
@@ -12,9 +13,10 @@ const Header = styled.div`
 const Text = styled.div`
   font-weight: bold;
   padding: 20px;
-  padding-right: 13vw;
-  text-align: right;
+  padding-left: 13vw;
+  text-align: left;
   font-size: 25px;
+  color: black;
 `;
 
 
@@ -22,7 +24,9 @@ const Text = styled.div`
 const AppHeader = ({ name }) => {
   return(
     <Header>
-      <Text>{name}</Text>
+      <Link to='/' style={{ textDecoration: 'none' }}>
+        <Text>{name}</Text>
+      </Link>
     </Header>
   );
 };

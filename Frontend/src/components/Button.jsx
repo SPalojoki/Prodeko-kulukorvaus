@@ -16,19 +16,19 @@ const Container = styled.div`
   transition: 0.3s;
   &:hover{
     background-color: #3d3d3d;
+    cursor: pointer;
   }
 `;
 
 const Text = styled.div`
   color: white;
-  transform: 
 `;
 
 
 // eslint-disable-next-line react/prop-types
-const Button = ({ text }) => {
+const Button = ({ text, onClick }) => {
   return(
-    <Container>
+    <Container onClick={onClick}>
       <BsFileEarmarkPlus />
       <Text>{text}</Text>
     </Container>

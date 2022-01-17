@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import WelcomeImage from '../static/WelcomeImage.png';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -21,10 +22,13 @@ const Image = styled.img`
 
 
 const StartScreen = () => {
+
   return(
     <Container>
       <Image src={WelcomeImage}></Image>
-      <Button text='Luo kulukorvaus'/>
+      <Link to='/lomake'>
+        <Button text='Luo kulukorvaus'/>
+      </Link>
     </Container>
   );
 };

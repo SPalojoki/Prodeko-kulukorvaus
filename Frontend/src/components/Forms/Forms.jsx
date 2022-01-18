@@ -17,7 +17,7 @@ const Form = () => {
     <Container>
       <Routes>
         <Route path='/' element={<BasicInfoForm />} />
-        <Route path='/kulut' element={<div>Moi</div>}/>
+        <Route path='/uusikulu' element={<div>Moi</div>}/>
       </Routes>
     </Container>
   );

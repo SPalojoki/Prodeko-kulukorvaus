@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from './Button';
 import WelcomeImage from '../static/WelcomeImage.png';
 import { Link } from 'react-router-dom';
+import { BsFillFileEarmarkPlusFill } from 'react-icons/bs';
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ const Container = styled.div`
 const Image = styled.img`
   padding: 8vh;
   width: calc(max(10vw, 150px));
-  opacity: 0.75;
+  width: 30%;
 `;
   
 
@@ -26,8 +27,11 @@ const StartScreen = () => {
   return(
     <Container>
       <Image src={WelcomeImage}></Image>
-      <Link to='/lomake'>
-        <Button text='Luo kulukorvaus'/>
+      <Link to='/lomake' style={{ textDecoration: 'none' }}>
+        <Button text='Luo kulukorvaus' color='darkblue'>
+          <BsFillFileEarmarkPlusFill size='40' />
+          Luo kulukorvaus
+        </Button>
       </Link>
     </Container>
   );

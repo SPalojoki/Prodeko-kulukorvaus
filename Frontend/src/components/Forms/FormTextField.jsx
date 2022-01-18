@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Field } from 'formik';
 
 const Container = styled.div`
   flex-grow: 1;
@@ -20,9 +21,10 @@ const TextInput = styled.input`
   transition: 1s;
   &:focus {
     box-shadow: 8px 13px;
-    transition: 1s;
+    transition: 0.5s;
     border-color: black;
     outline: none;
+    transform: translate(-3px, -3px);
   }
 `;
 
@@ -32,14 +34,12 @@ const NameText = styled.div`
 `;
   
 
-
-
 // eslint-disable-next-line react/prop-types
-const FormTextField = ({ name, placeHolder }) => {
+const FormTextField = ({ showName, name, type, placeholder }) => {
   return(
     <Container>
-      <NameText>{name}</NameText>
-      <TextInput placeholder={placeHolder} />
+      <NameText>{showName}</NameText>
+      <Field name={name} type={type} as={TextInput} placeholder={placeholder} />
     </Container>
   );
 };

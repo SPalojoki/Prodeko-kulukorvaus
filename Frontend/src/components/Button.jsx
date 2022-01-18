@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BsFileEarmarkPlus } from 'react-icons/bs';
 
-const Container = styled.div`
+
+const Container = styled.button`
   display: flex;
   gap: 15px;
-  background-color: black;
+  align-items: center;
+  background-color: green;
   border-radius: 16px;
   white-space: nowrap;
   width: min-content;
@@ -13,24 +14,26 @@ const Container = styled.div`
   margin: 4px 2px;
   text-align: center;
   color: white;
-  transition: 0.3s;
-  &:hover{
-    background-color: #3d3d3d;
+  box-shadow: 5px 10px #000000;
+  transition: 0.5s;
+  border: 2px solid lightgray;
+  font-size: 16px;
+  font-weight: bold;
+  &:hover {
+    box-shadow: 3px 7px #000000;
+    transition: 0.5s;
+    transform: translate(2px, 3px);
     cursor: pointer;
   }
 `;
 
-const Text = styled.div`
-  color: white;
-`;
 
 
 // eslint-disable-next-line react/prop-types
-const Button = ({ text, onClick }) => {
+const Button = ({ onClick, color, children, type }) => {
   return(
-    <Container onClick={onClick}>
-      <BsFileEarmarkPlus />
-      <Text>{text}</Text>
+    <Container onClick={onClick} style={{ backgroundColor: color }} type={type}>
+      {children}
     </Container>
   );
 };

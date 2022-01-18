@@ -13,10 +13,10 @@ const Text = styled.h2`
 
 
 // eslint-disable-next-line react/prop-types
-const FormTitle = ({ title }) => {
+const FormTitle = ({ children }) => {
   return(
     <Container>
-      <Text>{title}</Text>
+      <Text>{children}</Text>
     </Container>
   );
 };

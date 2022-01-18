@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import Button from '../Button';
 import { BsFillArrowRightCircleFill, BsFillStopCircleFill } from 'react-icons/bs';
 import FormikWrapper from './FormikWrapper';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearBasicInfo, setBasicInfo } from '../../reducers/basicInfoReducer';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -24,21 +27,16 @@ const Buttonbar = styled.div`
 `;  
 
 
-
-const initialValues = {
-  name: '',
-  email: '',
-  phone: '',
-  iban: '',
-  bic: ''
-}
-;
-
-
-
-
-
 const BasicInfoFormFields = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+  const onInterrupt = () => {
+    dispatch(clearBasicInfo());
+    navigate('/');
+  };
+
   return(
     <Container>
       <Fields>
@@ -49,7 +47,7 @@ const BasicInfoFormFields = () => {
         <FormTextField name='bic' type='text' showName='BIC' placeholder='NDEAFIHH, OKOYFIHH, HANDFIHH, ...'/>
       </Fields>
       <Buttonbar>
-        <Button color='red' type='button'>
+        <Button color='red' type='button' onClick={onInterrupt}>
           <BsFillStopCircleFill size='30'/>
           Keskeytä
         </Button>
@@ -64,10 +62,18 @@ const BasicInfoFormFields = () => {
 
 
 const BasicInfoForm = () => {
+  const dispatch = useDispatch();
+  const initialValues = useSelector(state => state.basicInfo);
+
+  
+  const onBasicInfoSubmit = values => {
+    dispatch(setBasicInfo(values));
+  };
+  
   return(
     <Container>
-      <FormTitle title='Aloitetaanpas! Lähdetään liikkeelle perustiedoistasi.' />
-      <FormikWrapper initialValues={initialValues} onSubmit={values => console.log(values)}>
+      <FormTitle>Aloitetaanpas! Lähdetään liikkeelle perustiedoistasi.</FormTitle>
+      <FormikWrapper initialValues={initialValues} onSubmit={onBasicInfoSubmit}>
         <BasicInfoFormFields />    
       </FormikWrapper>
     </Container>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Field } from 'formik';
+import { Field, useField } from 'formik';
 
 const Container = styled.div`
   flex-grow: 1;
@@ -32,14 +32,30 @@ const NameText = styled.div`
   margin: 7px;
   font-size: 16px;
 `;
-  
+
+const ErrorText = styled.div`
+  color: red;
+  font-size: 12px;
+  margin: 20px 0px 0px 0px;
+  padding: 0px;
+`;  
 
 // eslint-disable-next-line react/prop-types
 const FormTextField = ({ showName, name, type, placeholder }) => {
+  const [field, meta] = useField(name);
+  const showError = field.value !== '' && meta.touched && meta.error;
+  
   return(
     <Container>
       <NameText>{showName}</NameText>
-      <Field name={name} type={type} as={TextInput} placeholder={placeholder} />
+      <Field
+        name={name}
+        type={type}
+        as={TextInput}
+        placeholder={placeholder}
+        style={showError ? { borderColor: 'red' } : null}
+      />
+      {showError && <ErrorText>{meta.error}</ErrorText>}
     </Container>
   );
 };

@@ -27,7 +27,7 @@ const StartScreen = () => {
   return(
     <Container>
       <Image src={WelcomeImage}></Image>
-      <Link to='/lomake' style={{ textDecoration: 'none' }}>
+      <Link to='/luo' style={{ textDecoration: 'none' }}>
         <Button text='Luo kulukorvaus' color='darkblue'>
           <BsFillFileEarmarkPlusFill size='40' />
           Luo kulukorvaus

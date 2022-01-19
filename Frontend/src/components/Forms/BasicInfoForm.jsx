@@ -3,11 +3,13 @@ import FormTextField from './FormTextField';
 import FormTitle from './FormTitle';
 import styled from 'styled-components';
 import Button from '../Button';
+import ButtonBar from './ButtonBar';
 import { BsFillArrowRightCircleFill, BsFillStopCircleFill } from 'react-icons/bs';
-import FormikWrapper from './FormikWrapper';
+import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearBasicInfo, setBasicInfo } from '../../reducers/basicInfoReducer';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 
 const Container = styled.div`
   width: 100%;
@@ -20,11 +22,6 @@ const Fields = styled.div`
   flex-wrap: wrap;
 `;
 
-const Buttonbar = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 30px 0px 0px 0px;
-`;  
 
 
 const BasicInfoFormFields = () => {
@@ -46,7 +43,7 @@ const BasicInfoFormFields = () => {
         <FormTextField name='iban' type='text' showName='Tilinumero (IBAN)' placeholder='FI21 1866 1866 1866 00'/>
         <FormTextField name='bic' type='text' showName='BIC' placeholder='NDEAFIHH, OKOYFIHH, HANDFIHH, ...'/>
       </Fields>
-      <Buttonbar>
+      <ButtonBar>
         <Button color='red' type='button' onClick={onInterrupt}>
           <BsFillStopCircleFill size='30'/>
           Keskeytä
@@ -55,7 +52,7 @@ const BasicInfoFormFields = () => {
           Seuraava
           <BsFillArrowRightCircleFill size='30'/>
         </Button>
-      </Buttonbar>
+      </ButtonBar>
     </Container>
   );
 };
@@ -64,18 +61,47 @@ const BasicInfoFormFields = () => {
 const BasicInfoForm = () => {
   const dispatch = useDispatch();
   const initialValues = useSelector(state => state.basicInfo);
+  const navigate = useNavigate();
 
-  
+  const validValues = Yup.object().shape({
+    name: Yup.string()
+      .max(50, 'Nimi on liian pitkä!')
+      .required('Tämä kenttä on pakollinen!'),
+    email: Yup.string()
+      .email('Tarkista osoitteen muotoilu!')
+      .required('Tämä kenttä on pakollinen!'),
+    phone: Yup.string()
+      .max(15, 'Tarkista puhelinnumero')
+      .min(5, 'Tarkista puhelinnumero!')
+      .required('Tämä kenttä on pakollinen!'),
+    iban: Yup.string()
+      .length(22, 'Tarkista IBAN. Käytä välejä erottimena.')
+      .required('Tämä kenttä on pakollinen!'),
+    bic: Yup.string()
+      .min(8, 'Tarkista BIC-tunnus')
+      .max(11, 'Tarkista BIC-tunnus')
+      .required('Tämä kenttä on pakollinen!')
+  });
+
+
+
   const onBasicInfoSubmit = values => {
     dispatch(setBasicInfo(values));
+    navigate('/luo/uusikulu');
   };
   
   return(
     <Container>
       <FormTitle>Aloitetaanpas! Lähdetään liikkeelle perustiedoistasi.</FormTitle>
-      <FormikWrapper initialValues={initialValues} onSubmit={onBasicInfoSubmit}>
-        <BasicInfoFormFields />    
-      </FormikWrapper>
+      <Formik initialValues={initialValues} onSubmit={onBasicInfoSubmit} validationSchema={validValues}>
+        {() => {
+          return(
+            <Form>
+              <BasicInfoFormFields /> 
+            </Form>
+          );
+        }}
+      </Formik>
     </Container>
   );
 };

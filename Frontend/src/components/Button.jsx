@@ -6,6 +6,7 @@ const Container = styled.button`
   display: flex;
   gap: 15px;
   align-items: center;
+  justify-content: center;
   background-color: green;
   border-radius: 16px;
   white-space: nowrap;
@@ -19,6 +20,8 @@ const Container = styled.button`
   border: 2px solid lightgray;
   font-size: 16px;
   font-weight: bold;
+  flex-shrink: 1;
+  min-width: 175px;
   &:hover {
     box-shadow: 3px 7px #000000;
     transition: 0.5s;
@@ -30,9 +33,9 @@ const Container = styled.button`
 
 
 // eslint-disable-next-line react/prop-types
-const Button = ({ onClick, color, children, type }) => {
+const Button = ({ onClick, color, children, type, style }) => {
   return(
-    <Container onClick={onClick} style={{ backgroundColor: color }} type={type}>
+    <Container onClick={onClick} style={{ backgroundColor: color, ...style }} type={type}>
       {children}
     </Container>
   );

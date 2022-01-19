@@ -6,6 +6,7 @@ const Header = styled.div`
   width: 100%;
   color: white;
   padding: 15px;
+  box-sizing: border-box;
 `;
 
 

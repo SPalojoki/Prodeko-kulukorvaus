@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import AppHeader from './AppHeader';
 import StartScreen from './StartScreen';
-import Forms from './Forms/Forms';
+import CreateScreens from './CreateScreens';
 import { Routes, Route } from 'react-router-dom';
 
 const Container = styled.div`
@@ -20,7 +20,7 @@ const Kulukorvaus = () => {
       <AppHeader name='Kulukorvaus' />
       <Routes>
         <Route path='/' element={<StartScreen />} />
-        <Route path='/lomake/*' element={<Forms />}/>
+        <Route path='/luo/*' element={<CreateScreens />}/>
       </Routes>
     </Container>
   );

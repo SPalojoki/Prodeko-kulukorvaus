@@ -8,7 +8,7 @@ const Container = styled.div`
 
 const TextInput = styled.input`
   box-sizing: border-box;
-  flex-grow: 1;
+  flex-grow: 2;
   min-width: 300px;
   width: 100%;
   padding: 15px;
@@ -41,12 +41,12 @@ const ErrorText = styled.div`
 `;  
 
 // eslint-disable-next-line react/prop-types
-const FormTextField = ({ showName, name, type, placeholder }) => {
+const FormTextField = ({ showName, name, type, placeholder, style }) => {
   const [field, meta] = useField(name);
   const showError = field.value !== '' && meta.touched && meta.error;
   
   return(
-    <Container>
+    <Container style={style}>
       <NameText>{showName}</NameText>
       <Field
         name={name}

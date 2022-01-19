@@ -24,10 +24,10 @@ const Fields = styled.div`
 
 
 
+// eslint-disable-next-line react/prop-types
 const BasicInfoFormFields = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   const onInterrupt = () => {
     dispatch(clearBasicInfo());
@@ -38,7 +38,7 @@ const BasicInfoFormFields = () => {
     <Container>
       <Fields>
         <FormTextField name='name' type='text' showName='Nimi' placeholder='Pekka Prodekolainen'/>
-        <FormTextField name='email' type='email' showName='Sähköposti' placeholder='pekka.prodekolainen@prodeko.org'/>
+        <FormTextField name='email' type='text' showName='Sähköposti' placeholder='pekka.prodekolainen@prodeko.org'/>
         <FormTextField name='phone' type='text' showName='Puhelinnumero' placeholder='123 456 1866'/>
         <FormTextField name='iban' type='text' showName='Tilinumero (IBAN)' placeholder='FI21 1866 1866 1866 00'/>
         <FormTextField name='bic' type='text' showName='BIC' placeholder='NDEAFIHH, OKOYFIHH, HANDFIHH, ...'/>
@@ -97,7 +97,7 @@ const BasicInfoForm = () => {
         {() => {
           return(
             <Form>
-              <BasicInfoFormFields /> 
+              <BasicInfoFormFields/> 
             </Form>
           );
         }}

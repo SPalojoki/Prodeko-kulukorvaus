@@ -10,11 +10,6 @@ const Container = styled.div`
   min-width: 100%;
 `;
 
-const FormAndList = styled.div`
-display: flex;
-flex-wrap: wrap;
-gap: 40px;
-`;
 
 
 
@@ -22,10 +17,8 @@ const AddExpenditure = () => {
   return(
     <Container>
       <FormTitle>Sitten asiaan! Listaa alla kulukorvattavat menot.</FormTitle>
-      <FormAndList>
-        <ExpenditureForm />
-        <AddedExpenditures />
-      </FormAndList>
+      <ExpenditureForm />
+      <AddedExpenditures/>
     </Container>
   );
 };

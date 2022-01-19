@@ -13,7 +13,8 @@ import * as Yup from 'yup';
 
 
 const Container = styled.div`
-  flex-grow: 2;
+  margin-bottom: 15px;
+  flex-shrink: 1;
 `;
 
 const Fields = styled.div`
@@ -49,7 +50,7 @@ const AddExpenditureFormFields = ({ dirty, isValid }) => {
     <Container>
       <Fields>
         <FormTextField name='title' type='text' showName='Kulun selite' placeholder='Karkkeja fuksiryhmätapaamiseen'/>
-        <FormTextField name='amount' type='text' showName='Summa (€)' placeholder='12.8' style={{minWidth: 130, width: 130}}/>
+        <FormTextField name='amount' type='text' showName='Summa (€)' placeholder='12.8' style={{flexGrow: 1}}/>
         <FormTextField name='info' type='text' showName='Lisätietoja' placeholder='Pekka Prodekolaisen fuksiryhmälle'/>
       </Fields>
       <ButtonBar>

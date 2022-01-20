@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import AddedExpenditure from './AddedExpenditure';
 
 const Container = styled.div`
   display: flex;
@@ -16,20 +17,9 @@ const Subtitle = styled.h3`
 const ExpenditureGrid = styled.div`
   margin-top: 10px;
   display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 `;
-
-const ExpenditureContainer = styled.div`
-  background-color: white;
-`;
-
-const Expenditure = ({ expenditure }) => {
-  return(
-    <ExpenditureContainer>
-      <div>{expenditure.title}</div>
-      <div>{expenditure.amount}</div>
-    </ExpenditureContainer>
-  );
-};
 
 
 const AddedExpenditures = () => {
@@ -44,7 +34,7 @@ const AddedExpenditures = () => {
           <Subtitle>Tähän mennessä lisätyt kulut</Subtitle>
           <ExpenditureGrid>
             {expenditures.map(expenditure =>
-              <Expenditure key={expenditure.id} expenditure={expenditure}/>
+              <AddedExpenditure key={expenditure.id} expenditure={expenditure}/>
             )}
           </ExpenditureGrid>
         </div>

@@ -28,7 +28,7 @@ const ButtonGroup = styled.div`
   display: flex;
   gap: 20px;
   width: 100%;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
 `;
 
 // eslint-disable-next-line react/prop-types

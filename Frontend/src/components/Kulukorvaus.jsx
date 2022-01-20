@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AppHeader from './AppHeader';
 import StartScreen from './StartScreen';
 import CreateScreens from './CreateScreens';
-import ModifyForm from './Forms/ModifyForm';
+import ModifyExpenditure from './ModifyExpenditure';
 import { Routes, Route } from 'react-router-dom';
 
 const Container = styled.div`
@@ -22,7 +22,7 @@ const Kulukorvaus = () => {
       <Routes>
         <Route path='/' element={<StartScreen />} />
         <Route path='/luo/*' element={<CreateScreens />}/>
-        <Route path='/muokkaa/:id' element={<ModifyForm />} />
+        <Route path='/muokkaa/:id' element={<ModifyExpenditure />} />
       </Routes>
     </Container>
   );

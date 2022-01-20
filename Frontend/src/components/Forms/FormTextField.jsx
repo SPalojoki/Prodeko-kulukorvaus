@@ -40,7 +40,7 @@ const ErrorText = styled.div`
   padding: 0px;
 `;  
 
-// eslint-disable-next-line react/prop-types
+
 const FormTextField = ({ showName, name, type, placeholder, style }) => {
   const [field, meta] = useField(name);
   const showError = field.value !== '' && meta.touched && meta.error;

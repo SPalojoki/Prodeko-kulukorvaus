@@ -4,10 +4,10 @@ import FormTitle from './FormTitle';
 import styled from 'styled-components';
 import Button from '../Button';
 import ButtonBar from './ButtonBar';
-import { BsFillArrowRightCircleFill, BsFillStopCircleFill } from 'react-icons/bs';
+import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearBasicInfo, setBasicInfo } from '../../reducers/basicInfoReducer';
+import { setBasicInfo } from '../../reducers/basicInfoReducer';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
@@ -22,18 +22,7 @@ const Fields = styled.div`
   flex-wrap: wrap;
 `;
 
-
-
-// eslint-disable-next-line react/prop-types
 const BasicInfoFormFields = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const onInterrupt = () => {
-    dispatch(clearBasicInfo());
-    navigate('/');
-  };
-
   return(
     <Container>
       <Fields>
@@ -44,10 +33,6 @@ const BasicInfoFormFields = () => {
         <FormTextField name='bic' type='text' showName='BIC' placeholder='NDEAFIHH, OKOYFIHH, HANDFIHH, ...'/>
       </Fields>
       <ButtonBar>
-        <Button color='red' type='button' onClick={onInterrupt}>
-          <BsFillStopCircleFill size='30'/>
-          Keskeytä
-        </Button>
         <Button type='submit'>
           Seuraava
           <BsFillArrowRightCircleFill size='30'/>

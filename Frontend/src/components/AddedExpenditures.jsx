@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
@@ -24,7 +24,6 @@ const ExpenditureGrid = styled.div`
 
 const AddedExpenditures = () => {
   const expenditures = useSelector(state => state.expenditures);
-  console.log(expenditures);
 
   return(
     <Container>

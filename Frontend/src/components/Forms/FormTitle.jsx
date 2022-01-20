@@ -12,7 +12,7 @@ const Text = styled.h2`
 
 
 
-// eslint-disable-next-line react/prop-types
+
 const FormTitle = ({ children }) => {
   return(
     <Container>

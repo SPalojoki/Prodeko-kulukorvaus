@@ -32,7 +32,7 @@ const Container = styled.button`
 
 
 
-// eslint-disable-next-line react/prop-types
+
 const Button = ({ onClick, color, children, type, style }) => {
   return(
     <Container onClick={onClick} style={{ backgroundColor: color, ...style }} type={type}>

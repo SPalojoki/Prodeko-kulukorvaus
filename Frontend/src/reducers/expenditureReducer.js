@@ -1,13 +1,43 @@
 /* eslint-disable indent */
 
+//TODO: These could be done without Redux-thunk. Needs some refactoring.
+
 export const addExpenditure = (newExpenditure) => {
-  return async (dispatch, getState) => {
+  return (dispatch, getState) => {
     const { expenditures } = getState();
     const id = Math.max(expenditures.map(expenditure => expenditure.id)) + 1;
     
     dispatch({
       type: 'SET_EXPENDITURES',
       expenditures: expenditures.concat({...newExpenditure, id})
+    });
+  };
+};
+
+export const editExpenditure = (modifiedExpenditure) => {
+  return (dispatch, getState) => {
+    const { expenditures } = getState();
+
+    const updatedExpenditures = expenditures.map(expenditure => expenditure.id === modifiedExpenditure.id
+      ? modifiedExpenditure
+      : expenditure);
+      
+      dispatch({
+        type: 'SET_EXPENDITURES',
+        expenditures: updatedExpenditures
+      });
+  };
+};
+
+export const deleteExpenditure = (id) => {
+  return (dispatch, getState) => {
+    const { expenditures } = getState();
+    const updatedExpenditures = expenditures.filter(expenditure => expenditure.id != id );
+    console.log(updatedExpenditures);
+
+    dispatch({
+      type: 'SET_EXPENDITURES',
+      expenditures: updatedExpenditures
     });
   };
 };

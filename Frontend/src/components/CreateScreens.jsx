@@ -5,7 +5,6 @@ import BasicInfoForm from './Forms/BasicInfoForm';
 import AddExpenditure from './AddExpenditure';
 
 const Container = styled.div`
-  display: flex;
   box-sizing: border-box;
   flex-grow: 1;
   width: 100%;

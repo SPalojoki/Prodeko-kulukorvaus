@@ -23,7 +23,7 @@ const Text = styled.div`
 `;
 
 
-// eslint-disable-next-line react/prop-types
+
 const AppHeader = ({ name }) => {
   return(
     <Container>

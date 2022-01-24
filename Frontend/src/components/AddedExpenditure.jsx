@@ -36,7 +36,7 @@ const Sum = styled.div`
   height: 52px;
   width: 52px;
   font-size: 14px;
-  background-color: green;
+  background-color: #192D76;;
   color: white;
   box-shadow: 1px 1px #000000;
   border: 2px solid black;

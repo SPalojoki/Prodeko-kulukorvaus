@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ExpenditureForm from './Forms/ExpenditureForm';
-import FormTitle from './Forms/FormTitle';
+import Title from './Title';
 import { editExpenditure } from '../reducers/expenditureReducer';
 import Button from './Button';
 import { BsFillSlashCircleFill } from 'react-icons/bs';
 import { deleteExpenditure } from '../reducers/expenditureReducer';
+import { clearFile } from '../reducers/selectedFileReducer';
+import { modifyFiles } from '../reducers/filesReducer';
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -28,6 +30,7 @@ const ModifyExpenditure = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const submittedFile = useSelector(state => state.selectedFile);
   
   const expenditures = useSelector(state => state.expenditures);
 
@@ -40,7 +43,13 @@ const ModifyExpenditure = () => {
   };
 
   const updateExpenditure = (modifiedExpenditure) => {
-    dispatch(editExpenditure(modifiedExpenditure));
+    const updatedExpenditure = submittedFile ? { ...modifiedExpenditure, attachedFile: submittedFile.name } : modifiedExpenditure;
+    dispatch(editExpenditure(updatedExpenditure));
+
+    if(submittedFile) {
+      dispatch(modifyFiles(submittedFile));
+      dispatch(clearFile());
+    }
     navigate('/luo/uusikulu');
   };
 
@@ -49,9 +58,14 @@ const ModifyExpenditure = () => {
     navigate('/luo/uusikulu');
   };
 
+
+  useEffect(() => {
+    dispatch(clearFile());
+  }, []);
+
   return(
     <Container>
-      <FormTitle>Kaikille sattuu virheitä! Tee tarvittavat korjaukset alla.</FormTitle>
+      <Title>Kaikille sattuu virheitä! Tee tarvittavat korjaukset alla.</Title>
       <ExpenditureForm initialValues={getExpenditure()} onSubmit={updateExpenditure} onBack={backToNewExpenditure}/>
       <DeleteContainer>
         <Button color={'darkred'} onClick={removeExpenditure}>

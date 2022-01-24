@@ -8,19 +8,16 @@ import { BsFillFileEarmarkPlusFill } from 'react-icons/bs';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   flex-grow: 1;
 `;
 
 const Image = styled.img`
-  padding: 8vh;
-  width: calc(max(10vw, 150px));
-  width: 30%;
+  width: calc(max(35vw, 400px));
+  margin-bottom: 80px;
 `;
   
-
-
 
 const StartScreen = () => {
 
@@ -28,7 +25,7 @@ const StartScreen = () => {
     <Container>
       <Image src={WelcomeImage}></Image>
       <Link to='/luo' style={{ textDecoration: 'none' }}>
-        <Button text='Luo kulukorvaus' color='darkblue'>
+        <Button text='Luo kulukorvaus' color='green'>
           <BsFillFileEarmarkPlusFill size='40' />
           Luo kulukorvaus
         </Button>

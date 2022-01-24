@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { BsFillCheckCircleFill, BsFillPlusCircleFill } from 'react-icons/bs';
 import * as Yup from 'yup';
 import { useLocation } from 'react-router-dom';
+import FileInput from './FileInput';
 
 //TODO: Dealing with different button in edit and new expenditures form might need some refactoring as the needs have changed...
 
@@ -24,12 +25,11 @@ const Fields = styled.div`
   flex-wrap: wrap;
 `;
 
-// const ButtonGroup = styled.div`
-//   display: flex;
-//   gap: 20px;
-//   width: 100%;
-//   flex-wrap: wrap-reverse;
-// `;
+const SubmitFileContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-top: 32px; //Margin-top to make button level with fields (label dimensions 7px + 1px + 16px + 1px + 7px)
+`;
 
 const ExpenditureFormFields = () => {
   return(
@@ -38,6 +38,9 @@ const ExpenditureFormFields = () => {
         <FormTextField name='title' type='text' showName='Kulun selite' placeholder='Karkkeja fuksiryhmätapaamiseen'/>
         <FormTextField name='amount' type='text' showName='Summa (€)' placeholder='12.99' style={{flexGrow: 1}}/>
         <FormTextField name='info' type='text' showName='Lisätietoja' placeholder='Pekka Prodekolaisen fuksiryhmälle'/>
+        <SubmitFileContainer>
+          <FileInput />
+        </SubmitFileContainer>
       </Fields>
     </Container>
   );
@@ -75,6 +78,7 @@ const Buttons = ({ dirty, isValid, onNext, onBack }) => {
 
 //Edit is defining if form buttons should be in editing mode
 const ExpenditureForm = ({ initialValues, onSubmit, onNext, onBack }) => {
+  
 
   const validValues = Yup.object().shape({
     title: Yup.string()
@@ -87,6 +91,7 @@ const ExpenditureForm = ({ initialValues, onSubmit, onNext, onBack }) => {
       .positive('Summa voi olla vain positiivinen 😉'),
     info: Yup.string()
   });
+
 
   return(
     <Container>

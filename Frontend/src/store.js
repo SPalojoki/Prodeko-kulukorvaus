@@ -3,12 +3,16 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import basicInfoReducer from './reducers/basicInfoReducer';
 import thunk from 'redux-thunk';
 import expenditureReducer from './reducers/expenditureReducer';
+import selectedFileReducer from './reducers/selectedFileReducer';
+import filesReducer from './reducers/filesReducer';
 
 //Main configs for Redux state
 
 const combinedReducer = combineReducers({
   basicInfo: basicInfoReducer,
-  expenditures: expenditureReducer
+  expenditures: expenditureReducer,
+  selectedFile: selectedFileReducer,
+  files: filesReducer
 });
 
 const store = createStore(combinedReducer, composeWithDevTools(applyMiddleware(thunk)));

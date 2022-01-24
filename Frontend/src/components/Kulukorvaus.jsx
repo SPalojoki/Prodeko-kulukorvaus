@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import AppHeader from './AppHeader';
 import StartScreen from './StartScreen';
 import CreateScreens from './CreateScreens';
+import Summary from './Summary';
 import ModifyExpenditure from './ModifyExpenditure';
 import { Routes, Route } from 'react-router-dom';
+
 
 const Container = styled.div`
   display: flex;
@@ -23,6 +25,7 @@ const Kulukorvaus = () => {
         <Route path='/' element={<StartScreen />} />
         <Route path='/luo/*' element={<CreateScreens />}/>
         <Route path='/muokkaa/:id' element={<ModifyExpenditure />} />
+        <Route path='/yhteenveto' element={<Summary />} />
       </Routes>
     </Container>
   );

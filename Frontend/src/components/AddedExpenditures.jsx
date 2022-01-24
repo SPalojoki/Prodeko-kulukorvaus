@@ -5,14 +5,9 @@ import { useSelector } from 'react-redux';
 import AddedExpenditure from './AddedExpenditure';
 
 const Container = styled.div`
-  display: flex;
   flex-grow: 1;
 `;
 
-const Subtitle = styled.h3`
-  font-size: 20px;
-  margin: 0px;
-`;
 
 const ExpenditureGrid = styled.div`
   margin-top: 10px;
@@ -21,24 +16,16 @@ const ExpenditureGrid = styled.div`
   flex-wrap: wrap;
 `;
 
-
 const AddedExpenditures = () => {
   const expenditures = useSelector(state => state.expenditures);
 
   return(
     <Container>
-      { expenditures.length !== 0
-        ?
-        <div>
-          <Subtitle>Tähän mennessä lisätyt kulut</Subtitle>
-          <ExpenditureGrid>
-            {expenditures.map(expenditure =>
-              <AddedExpenditure key={expenditure.id} expenditure={expenditure}/>
-            )}
-          </ExpenditureGrid>
-        </div>
-        : null
-      }
+      <ExpenditureGrid>
+        {expenditures.map(expenditure =>
+          <AddedExpenditure key={expenditure.id} expenditure={expenditure}/>
+        )}
+      </ExpenditureGrid>
     </Container>
   );
 };

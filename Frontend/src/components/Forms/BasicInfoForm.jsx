@@ -1,6 +1,6 @@
 import React from 'react';
 import FormTextField from './FormTextField';
-import FormTitle from './FormTitle';
+import Title from '../Title';
 import styled from 'styled-components';
 import Button from '../Button';
 import ButtonBar from './ButtonBar';
@@ -77,7 +77,7 @@ const BasicInfoForm = () => {
   
   return(
     <Container>
-      <FormTitle>Aloitetaanpas! Lähdetään liikkeelle perustiedoistasi.</FormTitle>
+      <Title>Aloitetaanpas! Lähdetään liikkeelle perustiedoistasi.</Title>
       <Formik initialValues={initialValues} onSubmit={onBasicInfoSubmit} validationSchema={validValues}>
         {() => {
           return(

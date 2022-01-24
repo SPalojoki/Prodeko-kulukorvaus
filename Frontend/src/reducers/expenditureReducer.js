@@ -33,7 +33,6 @@ export const deleteExpenditure = (id) => {
   return (dispatch, getState) => {
     const { expenditures } = getState();
     const updatedExpenditures = expenditures.filter(expenditure => expenditure.id != id );
-    console.log(updatedExpenditures);
 
     dispatch({
       type: 'SET_EXPENDITURES',

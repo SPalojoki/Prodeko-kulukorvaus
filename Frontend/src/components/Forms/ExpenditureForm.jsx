@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Formik, Form } from 'formik';
 import FormTextField from './FormTextField';
 import ButtonBar from './ButtonBar';
 import Button from '../Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BsFillCheckCircleFill, BsFillPlusCircleFill } from 'react-icons/bs';
 import * as Yup from 'yup';
 import { useLocation } from 'react-router-dom';
 import FileInput from './FileInput';
+import { clearFile } from '../../reducers/selectedFileReducer';
 
 //TODO: Dealing with different button in edit and new expenditures form might need some refactoring as the needs have changed...
 
@@ -78,7 +79,12 @@ const Buttons = ({ dirty, isValid, onNext, onBack }) => {
 
 //Edit is defining if form buttons should be in editing mode
 const ExpenditureForm = ({ initialValues, onSubmit, onNext, onBack }) => {
+  const dispatch = useDispatch();
   
+  useEffect(() => {
+    dispatch(clearFile());
+  }, []);
+
 
   const validValues = Yup.object().shape({
     title: Yup.string()

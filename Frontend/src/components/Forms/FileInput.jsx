@@ -22,6 +22,7 @@ const Container = styled.div`
     transition: 0.5s;
     transform: translate(-3px, -3px);
     border-color: black;
+    cursor: pointer;
   }
 `;
 

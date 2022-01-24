@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import AddedExpenditures from './AddedExpenditures';
 import Title from './Title';
-import { BsFillPenFill } from 'react-icons/bs';
+import { BsFillPenFill, BsArrowUpRightCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
+import ButtonBar from './Forms/ButtonBar';
+import Button from './Button';
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -105,7 +107,9 @@ const SummaryBasicInfo = ({ onClick }) => {
 const Summary = () => {
   const navigate = useNavigate();
 
-  useEffect(() => console.log('raikku'));
+  const backToAddExpenditure = () => {
+    navigate('/luo/uusikulu');
+  };
 
 
   return(
@@ -121,6 +125,12 @@ const Summary = () => {
           <AddedExpenditures />
         </div>
       </Contents>
+      <ButtonBar onBack={backToAddExpenditure}>
+        <Button>
+          Lähetä
+          <BsArrowUpRightCircleFill size='30'/>
+        </Button>
+      </ButtonBar>
     </Container>
   );
 };

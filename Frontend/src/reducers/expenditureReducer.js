@@ -1,11 +1,13 @@
 /* eslint-disable indent */
+import uniquid from 'uniqid';
+
 
 //TODO: These could be done without Redux-thunk. Needs some refactoring.
 
 export const addExpenditure = (newExpenditure) => {
   return (dispatch, getState) => {
     const { expenditures } = getState();
-    const id = Math.max(expenditures.map(expenditure => expenditure.id)) + 1;
+    const id = uniquid();
     
     dispatch({
       type: 'SET_EXPENDITURES',

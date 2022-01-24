@@ -21,7 +21,7 @@ const AddExpenditure = () => {
   const dispatch = useDispatch();
   const expenditures = useSelector(state => state.expenditures);
   const submittedFile = useSelector(state => state.selectedFile);
-  const files = useSelector(state => state.files);
+  // const files = useSelector(state => state.files);
 
   const initialValues = {
     title: '',
@@ -45,9 +45,9 @@ const AddExpenditure = () => {
   };
 
   const toSummary = () => {
-    console.log(expenditures);
-    console.log(files);
-    //navigate('/yhteenveto');
+    // console.log(expenditures);
+    // console.log(files);
+    navigate('/yhteenveto');
   };
 
   return(

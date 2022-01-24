@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: kulukorvaus-reverseproxy
+    depends_on:
+      - backend
+      - frontend
   backend:
     image: kulukorvaus-back-dev
     build:
@@ -8,8 +18,6 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - ./Backend:/usr/src/app
-    ports:
-      - 3001:3001
     environment:
       - PORT=3001
     container_name: kulukorvaus-back-dev
@@ -18,17 +26,8 @@ services:
     build:
       context: ./Frontend/
       dockerfile: Dockerfile.dev
-    environment:
-      - BACKEND_URL=/api/
-    ports:
-      - 3000:3000
     volumes:
       - ./Frontend:/usr/src/app/
+    environment:
+      - WDS_SOCKET_PORT=0 #Remove this when React Dev Server bug is fixed: https://github.com/facebook/create-react-app/issues/11897
     container_name: kulukorvaus-front-dev
-  nginx:
-    image: nginx:1.20.1
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    ports:
-      - 8080:80
-    container_name: kulukorvaus-reverseproxy

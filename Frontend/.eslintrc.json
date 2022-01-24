@@ -34,5 +34,13 @@
             "error",
             "always"
         ]
-    }
+    },
+    "overrides": [
+        {
+            "files": ["**/*.jsx"],
+            "rules": {
+                "react/prop-types": "off"
+            }
+        }
+    ]
 }

@@ -7,6 +7,7 @@ import { BsFillPenFill, BsArrowUpRightCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import ButtonBar from './Forms/ButtonBar';
 import Button from './Button';
+import expendituresServices from '../services/expenditures';
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -126,7 +127,7 @@ const Summary = () => {
         </div>
       </Contents>
       <ButtonBar onBack={backToAddExpenditure}>
-        <Button>
+        <Button onClick={expendituresServices.hello}>
           Lähetä
           <BsArrowUpRightCircleFill size='30'/>
         </Button>

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  backend:
+    image: kulukorvaus-back-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3001:3001
+    environment:
+      - PORT=3001
+    container_name: kulukorvaus-back-dev

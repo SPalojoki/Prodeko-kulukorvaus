@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BsPaperclip } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFile } from '../../reducers/selectedFileReducer';
-import uniquid from 'uniqid';
+// import uniquid from 'uniqid';
 
 const Container = styled.div`
   display: flex;
@@ -39,13 +39,13 @@ const FileInput = () => {
 
   
   const handleFileChange = (file) => {
-    const fileID = uniquid();
-    const fileExtension = file.name.split('.').pop();
+    // const fileID = uniquid();
+    // const fileExtension = file.name.split('.').pop();
 
-    Object.defineProperty(file, 'name', {
-      writable: true,
-      value: `${fileID}.${fileExtension}`
-    });
+    // Object.defineProperty(file, 'name', {
+    //   writable: true,
+    //   value: `${fileID}.${fileExtension}`
+    // });
 
     dispatch(setFile(file));
   };

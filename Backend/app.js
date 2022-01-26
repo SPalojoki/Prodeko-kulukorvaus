@@ -1,13 +1,12 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const expenditureRouter = require('./controllers/expenditures');
 
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/hello', (request, response) => {
-  response.send('Hello!');
-});
+app.use(expenditureRouter);
 
 module.exports = app;

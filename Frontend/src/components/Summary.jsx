@@ -86,9 +86,8 @@ const ModifyIcon = styled.div`
 `;
 
 
-const SummaryBasicInfo = ({ onClick }) => {
-  const basicInfo = useSelector(state => state.basicInfo);
-
+const SummaryBasicInfo = ({ onClick, basicInfo }) => {
+  
   return(
     <BasicInfoContainer onClick={onClick}>
       <ModifyIcon>
@@ -106,6 +105,9 @@ const SummaryBasicInfo = ({ onClick }) => {
 
 
 const Summary = () => {
+  const basicInfo = useSelector(state => state.basicInfo);
+  const addedExpenditures = useSelector(state => state.expenditures);
+  const files = useSelector(state => state.files);
   const navigate = useNavigate();
 
   const backToAddExpenditure = () => {
@@ -119,7 +121,7 @@ const Summary = () => {
       <Contents>
         <div>
           <Title size='sub'>Tässä perusjutut</Title>
-          <SummaryBasicInfo onClick={() => navigate('/luo')}/>
+          <SummaryBasicInfo onClick={() => navigate('/luo')} basicInfo={basicInfo}/>
         </div>
         <div>
           <Title size='sub'>ja tässä kulukorvattavat kulut</Title>
@@ -127,7 +129,7 @@ const Summary = () => {
         </div>
       </Contents>
       <ButtonBar onBack={backToAddExpenditure}>
-        <Button onClick={expendituresServices.hello}>
+        <Button onClick={() => expendituresServices.sendExpenditure(basicInfo, addedExpenditures, files)}>
           Lähetä
           <BsArrowUpRightCircleFill size='30'/>
         </Button>

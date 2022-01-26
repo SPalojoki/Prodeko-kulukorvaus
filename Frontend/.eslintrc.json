@@ -37,7 +37,7 @@
     },
     "overrides": [
         {
-            "files": ["**/*.jsx"],
+            "files": ["**/*.jsx", "**/*.js"],
             "rules": {
                 "react/prop-types": "off"
             }

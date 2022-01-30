@@ -2,6 +2,7 @@ const expenditureRouter = require('express').Router();
 const multer = require('multer');
 const generateExpenditure = require('../helpers/generatePdf');
 const upload = multer();
+const uniqid = require('uniqid'); 
 
 expenditureRouter.post('/submitExpenditure', upload.any('files'), (request, response) => {
   const files = request.files;
@@ -25,7 +26,7 @@ expenditureRouter.post('/submitExpenditure', upload.any('files'), (request, resp
 
   try {
     response.setHeader('Content-Type', 'application/pdf; charset=utf-8');
-    response.setHeader('Content-Disposition', 'attachment;filename=korvaus.pdf');
+    response.setHeader('Content-Disposition', `attachment; filename="${uniqid('kulukorvaus')}.pdf"`);
 
     generateExpenditure(allData,
       (chunk) => response.write(chunk),

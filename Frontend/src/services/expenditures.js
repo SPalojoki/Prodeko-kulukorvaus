@@ -13,13 +13,19 @@ const sendExpenditure = async (basicInfo, expenditures, files) => {
     formData.append('files', element);
   });
 
-  const response = await axios.post(baselUrl + '/submitExpenditure', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },
-    responseType: 'blob'
-  });
-  fileDownload(response.data, 'korvaus.pdf');
+  try {
+    const response = await axios.post(baselUrl + '/submitExpenditure', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      responseType: 'blob'
+    });
+    fileDownload(response.data, response.headers['content-disposition'].split('filename=')[1]);
+  } catch (e) {
+    console.log(e);
+  }
+
+
 };
 
 export default { sendExpenditure };

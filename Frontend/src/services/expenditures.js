@@ -1,5 +1,7 @@
 import axios from 'axios';
+import * as fileDownload from 'js-file-download';
 const baselUrl = '/api';
+
 
 
 const sendExpenditure = async (basicInfo, expenditures, files) => {
@@ -14,9 +16,10 @@ const sendExpenditure = async (basicInfo, expenditures, files) => {
   const response = await axios.post(baselUrl + '/submitExpenditure', formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
-    }
+    },
+    responseType: 'blob'
   });
-  console.log('vastaus', response);
+  fileDownload(response.data, 'korvaus.pdf');
 };
 
 export default { sendExpenditure };

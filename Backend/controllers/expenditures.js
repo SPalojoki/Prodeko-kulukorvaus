@@ -3,7 +3,6 @@ const multer = require('multer');
 const generateExpenditure = require('../helpers/generatePdf');
 const upload = multer();
 
-
 expenditureRouter.post('/submitExpenditure', upload.any('files'), (request, response) => {
   const files = request.files;
   const basicInfo = JSON.parse(request.body.basicInfo);
@@ -15,7 +14,7 @@ expenditureRouter.post('/submitExpenditure', upload.any('files'), (request, resp
     const expenditure = expenditures[i];
     const file = files.find(file => file.originalname === expenditure.attachedFile);
 
-    filesAndExpenditures.push({...expenditure, fileBuffer: file.buffer});
+    filesAndExpenditures.push({...expenditure, fileBuffer: file.buffer, fileType: file.mimetype});
   }
 
   const allData = {
@@ -23,13 +22,18 @@ expenditureRouter.post('/submitExpenditure', upload.any('files'), (request, resp
     filesAndExpenditures
   };
 
-  generateExpenditure(allData, './pdfs/pdf');
-  
-  console.log('Files:', files);
-  console.log('BasicInfo:', basicInfo);
-  console.log('Expenditures:', expenditures);
-  console.log('Kaikki', allData);
-  response.send('Toimii!').end();
+
+  try {
+    response.setHeader('Content-Type', 'application/pdf; charset=utf-8');
+    response.setHeader('Content-Disposition', 'attachment;filename=korvaus.pdf');
+
+    generateExpenditure(allData,
+      (chunk) => response.write(chunk),
+      () => response.end()
+    );
+  } catch (error) {
+    response.status(500).json({error: error.message});
+  }
 });
 
 

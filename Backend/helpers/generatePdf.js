@@ -1,4 +1,3 @@
-const fs = require('fs');
 const PDFDoocument = require('pdfkit');
 
 const headerData = {
@@ -7,11 +6,13 @@ const headerData = {
   thirdRow: '02150, Espoo'
 };
 
-const date = new Date().toLocaleDateString('fi-FI', { year: 'numeric', month: 'long', day: 'numeric' })
+const date = new Date().toLocaleDateString('fi-FI', { year: 'numeric', month: 'long', day: 'numeric' });
 
 
-const generateExpenditure = (allData, path) => {
+const generateExpenditure = (allData, dataCallback, endCallback) => {
   const document = new PDFDoocument({ margin: 50 });
+  document.on('data', dataCallback);
+  document.on('end', endCallback);
 
   generateHeader(document);
   generateBasicInformation(document, allData);
@@ -19,7 +20,6 @@ const generateExpenditure = (allData, path) => {
   generateAppendices(document, allData);
 
   document.end();
-  document.pipe(fs.createWriteStream(`${path}.pdf`));
 };
 
 //Helper functions
@@ -125,14 +125,14 @@ const generateAppendices = (document, allData) => {
   const filesAndExpenditures = allData.filesAndExpenditures;
 
   for (let i = 0; i < filesAndExpenditures.length; i++) {
+    const fileToAdd = filesAndExpenditures[i];
     document.addPage();
     generateHeader(document);
     document
       .fontSize(20)
       .font('./static/Roboto-Bold.ttf')
       .text(`Liite ${i + 1}`, 50, 130)
-      .image(filesAndExpenditures[i].fileBuffer, 50, 200, { width: 400 })
-      ;
+      .image(fileToAdd.fileBuffer, 50, 200, { width: 400 });
   }
 };
 

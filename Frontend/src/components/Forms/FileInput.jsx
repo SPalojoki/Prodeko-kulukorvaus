@@ -55,7 +55,7 @@ const FileInput = () => {
     <Container style={{ backgroundColor: selectedFile ? 'lightgreen' : null }}>
       <BsPaperclip size='20' />
       <label htmlFor="upload-receipt">{selectedFile ? 'Kuitti liitetty' : 'Liitä kuitti'}</label>
-      <Input type="file" name="receipt" id="upload-receipt" onChange={event => handleFileChange(event.target.files[0])} />
+      <Input type="file" accept=".jpg,.jpeg,.png,.pdf" name="receipt" id="upload-receipt" onChange={event => handleFileChange(event.target.files[0])} />
     </Container>
   );
 };

@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import AddedExpenditures from './AddedExpenditures';
 import Title from './Title';
@@ -8,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import ButtonBar from './Forms/ButtonBar';
 import Button from './Button';
 import expendituresServices from '../services/expenditures';
+import { setError } from '../reducers/errorReducer';
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -39,6 +41,7 @@ const BasicInfoContainer = styled.div`
   gap: 20px;
   overflow: hidden;
   flex-wrap: wrap;
+  position: relative;
   &:hover {
     box-shadow: 6px 6px #000000;
     transform: translate(-2px, -2px);
@@ -106,14 +109,16 @@ const Summary = () => {
   const addedExpenditures = useSelector(state => state.expenditures);
   const files = useSelector(state => state.files);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const backToAddExpenditure = () => {
     navigate('/luo/uusikulu');
   };
 
-  const onSend = async () => {
-    await expendituresServices.sendExpenditure(basicInfo, addedExpenditures, files);
-    navigate('/onnistui');
+  const onSend = () => {
+    expendituresServices.sendExpenditure(basicInfo, addedExpenditures, files, navigate)
+      .then(() => navigate('/onnistui'))
+      .catch((error) => dispatch(setError(error.message)));
   };
 
 

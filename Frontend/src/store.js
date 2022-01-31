@@ -6,6 +6,7 @@ import expenditureReducer from './reducers/expenditureReducer';
 import selectedFileReducer from './reducers/selectedFileReducer';
 import filesReducer from './reducers/filesReducer';
 import downloadedExpenditureReducer from './reducers/downloadedExpenditureReducer';
+import errorReducer from './reducers/errorReducer';
 
 //Main configs for Redux state
 
@@ -14,7 +15,8 @@ const combinedReducer = combineReducers({
   expenditures: expenditureReducer,
   selectedFile: selectedFileReducer,
   files: filesReducer,
-  downloadedExpenditure: downloadedExpenditureReducer
+  downloadedExpenditure: downloadedExpenditureReducer,
+  error: errorReducer
 });
 
 const store = createStore(combinedReducer, composeWithDevTools(applyMiddleware(thunk)));

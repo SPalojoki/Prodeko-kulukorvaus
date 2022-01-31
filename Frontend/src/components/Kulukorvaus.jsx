@@ -7,6 +7,8 @@ import Summary from './Summary';
 import Success from './Success';
 import ModifyExpenditure from './ModifyExpenditure';
 import { Routes, Route } from 'react-router-dom';
+import ErrorPopup from './ErrorPopup';
+import { useSelector } from 'react-redux';
 
 
 const Container = styled.div`
@@ -19,8 +21,11 @@ const Container = styled.div`
 
 
 const Kulukorvaus = () => {
+  const error = useSelector(state => state.error);
+
   return(
     <Container>
+      { error ? <ErrorPopup /> : null }
       <AppHeader name='Kulukorvaus' />
       <Routes>
         <Route path='/' element={<StartScreen />} />

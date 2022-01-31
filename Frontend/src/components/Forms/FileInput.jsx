@@ -39,17 +39,8 @@ const FileInput = () => {
 
   
   const handleFileChange = (file) => {
-    // const fileID = uniquid();
-    // const fileExtension = file.name.split('.').pop();
-
-    // Object.defineProperty(file, 'name', {
-    //   writable: true,
-    //   value: `${fileID}.${fileExtension}`
-    // });
-
     dispatch(setFile(file));
   };
-
 
   return(
     <Container style={{ backgroundColor: selectedFile ? 'lightgreen' : null }}>

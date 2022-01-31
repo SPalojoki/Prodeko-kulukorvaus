@@ -87,7 +87,6 @@ const ModifyIcon = styled.div`
 
 
 const SummaryBasicInfo = ({ onClick, basicInfo }) => {
-  
   return(
     <BasicInfoContainer onClick={onClick}>
       <ModifyIcon>
@@ -102,8 +101,6 @@ const SummaryBasicInfo = ({ onClick, basicInfo }) => {
   );
 };
 
-
-
 const Summary = () => {
   const basicInfo = useSelector(state => state.basicInfo);
   const addedExpenditures = useSelector(state => state.expenditures);
@@ -112,6 +109,11 @@ const Summary = () => {
 
   const backToAddExpenditure = () => {
     navigate('/luo/uusikulu');
+  };
+
+  const onSend = async () => {
+    await expendituresServices.sendExpenditure(basicInfo, addedExpenditures, files);
+    navigate('/onnistui');
   };
 
 
@@ -129,7 +131,7 @@ const Summary = () => {
         </div>
       </Contents>
       <ButtonBar onBack={backToAddExpenditure}>
-        <Button onClick={() => expendituresServices.sendExpenditure(basicInfo, addedExpenditures, files)}>
+        <Button onClick={onSend}>
           Lähetä
           <BsArrowUpRightCircleFill size='30'/>
         </Button>

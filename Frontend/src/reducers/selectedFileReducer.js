@@ -17,9 +17,6 @@ export const clearFile = () => {
   };
 };
 
-
-
-
 const selectedFileReducer = (state = null, action) => {
   switch(action.type) {
     case 'SET_FILE':

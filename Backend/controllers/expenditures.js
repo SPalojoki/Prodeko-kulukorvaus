@@ -26,7 +26,7 @@ expenditureRouter.post('/submitExpenditure', upload.any('files'), (request, resp
 
   try {
     response.setHeader('Content-Type', 'application/pdf; charset=utf-8');
-    response.setHeader('Content-Disposition', `attachment; filename="${uniqid('kulukorvaus')}.pdf"`);
+    response.setHeader('Content-Disposition', 'inline');
 
     generateExpenditure(allData,
       (chunk) => response.write(chunk),

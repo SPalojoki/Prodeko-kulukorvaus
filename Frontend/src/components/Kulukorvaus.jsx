@@ -4,6 +4,7 @@ import AppHeader from './AppHeader';
 import StartScreen from './StartScreen';
 import CreateScreens from './CreateScreens';
 import Summary from './Summary';
+import Success from './Success';
 import ModifyExpenditure from './ModifyExpenditure';
 import { Routes, Route } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ const Kulukorvaus = () => {
         <Route path='/luo/*' element={<CreateScreens />}/>
         <Route path='/muokkaa/:id' element={<ModifyExpenditure />} />
         <Route path='/yhteenveto' element={<Summary />} />
+        <Route path='/onnistui' element={<Success />} />
       </Routes>
     </Container>
   );

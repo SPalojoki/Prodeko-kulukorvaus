@@ -1,5 +1,6 @@
 import axios from 'axios';
-import * as fileDownload from 'js-file-download';
+import { storeExpenditure } from '../reducers/downloadedExpenditureReducer';
+import store from '../store';
 const baselUrl = '/api';
 
 
@@ -20,7 +21,7 @@ const sendExpenditure = async (basicInfo, expenditures, files) => {
       },
       responseType: 'blob'
     });
-    fileDownload(response.data, response.headers['content-disposition'].split('filename=')[1]);
+    store.dispatch(storeExpenditure(response.data));
   } catch (e) {
     console.log(e);
   }
